@@ -16,10 +16,11 @@ class App < Sinatra::Base
   end
 
   get '/say/:number/:phrase' do
-    @num = params[:number].to_i
-    @phrase = params[:phrase]
-    @num.times do
-      "#{@phrase}"
+    num = params[:number].to_i
+    phrase = params[:phrase]
+
+    num.times do
+      "#{phrase}"
     end
   end
 
@@ -35,9 +36,16 @@ class App < Sinatra::Base
   get '/:operation/:number1/:number2' do
     num1 = params[:number1].to_i
     num2 = params[:number2].to_i
-    operation = params[:operation]
-    op =
-    "#{num1  num2}"
+    op = params[:operation]
+    if op == "add"
+      "#{num1 + num2}"
+    elsif op == "subtract"
+      "#{num2 - num1}"
+    elsif op == "multiply"
+      "#{num1 * num2}"
+    else
+      "#{num1 / num2}"
+    end
   end
 
 end
